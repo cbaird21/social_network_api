@@ -9,7 +9,7 @@ module.exports = {
             .catch((err) => res.status(500).json(err));
     },
     // GET a thought by id
-    getSinglethought(req, res) {
+    getSingleThought(req, res) {
         Thought.findOne({ _id: req.params.thoughtId })
             .select('-__v')
             .then((thought) =>
@@ -20,7 +20,7 @@ module.exports = {
             .catch((err) => res.status(500).json(err));
     },
     // Create a thought
-    createthought(req, res) {
+    createThought(req, res) {
         Thought.create(req.body)
             .then(({ _id }) => {
                 return User.findOneAndUpdate(
@@ -39,7 +39,7 @@ module.exports = {
 
     },
     // UPDATE a thought
-    updatethought(req, res) {
+    updateThought(req, res) {
         Thought.findOneAndUpdate(
             { _id: req.params.thoughtId },
             { $set: req.body },
@@ -53,7 +53,7 @@ module.exports = {
             .catch((err) => res.status(500).json(err));
     },
     // DELETE a thought
-    deletethought(req, res) {
+    deleteThought(req, res) {
         Thought.findOneAndDelete({ _id: req.params.thoughtId })
             .then((thought) =>
                 !thought
