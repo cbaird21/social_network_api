@@ -1,4 +1,3 @@
-const { createPoolCluster } = require('mysql2');
 const { User, Thought } = require('../models')
 
 module.exports = {
