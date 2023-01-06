@@ -78,7 +78,7 @@ thoughtSchema
     .virtual('reactionCount')
     // getter function to get the length of the thoughts reactions array field on query.
     .get(function () {
-        return `${this.reactions.length}`
+        return this.reactions.length
     });
 
 // initalize our Thoughts model
