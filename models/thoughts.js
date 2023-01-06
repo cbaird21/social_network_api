@@ -1,9 +1,9 @@
-const { Schema, Types } = require('mongoose');
+const { Schema, Types, model } = require('mongoose');
 const moment = require('moment');
 
 // reactions(these are like replies)
 // array of nested documents created with the reactionSchema
-const reactionSchema = new schema(
+const reactionSchema = new Schema(
     {
         // reactionId , mongoose ObjectId data type, default value is set to new ObjectId
         reactionId: {

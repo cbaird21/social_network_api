@@ -1,10 +1,10 @@
-const { createPoolCluster } = require('mysql2');
+
 const { User, Thought } = require('../models')
 
 module.exports = {
     // GET all users
     getThought(req, res) {
-        Thought.find({})
+        Thought.find()
             .then((thought) => res.status(200).json(thought))
             .catch((err) => res.status(500).json(err));
     },
@@ -58,6 +58,7 @@ module.exports = {
             .then((thought) =>
                 !thought
                     ? res.status(404).json({ message: "No thought found with this ID." })
+                    : res.status(200).json(thought)
             )
             .then((user) =>
                 !user

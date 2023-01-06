@@ -1,4 +1,4 @@
-const router = require('express').router();
+const router = require('express').Router();
 
 // import all api routes from the api directory
 const apiRoutes = require('./api');

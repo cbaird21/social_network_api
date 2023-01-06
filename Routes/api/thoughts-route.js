@@ -1,4 +1,4 @@
-const router = require('express').router();
+const router = require('express').Router();
 
 
 const {
@@ -9,7 +9,7 @@ const {
     deleteThought,
     createReaction,
     deleteReaction
-} = require('../../controllers/thoughtController');
+} = require('../../controllers/thoughtsController');
 
 // localhost:3001/api/thoughts
 // Get all and Post
