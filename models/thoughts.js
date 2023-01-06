@@ -3,7 +3,7 @@ const moment = require('moment');
 
 // reactions(these are like replies)
 // array of nested documents created with the reactionSchema
-const reactionSchema = new schema (
+const reactionSchema = new schema(
     {
         // reactionId , mongoose ObjectId data type, default value is set to new ObjectId
         reactionId: {
@@ -28,8 +28,15 @@ const reactionSchema = new schema (
             default: Date.now,
             get: createdAtVal => moment(createdAtVal).format("MMM Do, YYYY [at] hh:mm a")
         }
+    },
+    {
+        toJSON: {
+            virtuals: true,
+            getters: true,
+        },
+        id: false,
     }
-    )
+)
 
 
 const thoughtSchema = new Schema({
@@ -59,7 +66,7 @@ const thoughtSchema = new Schema({
 },
     {
         toJSON: {
-            virtuals:true,
+            virtuals: true,
             getters: true,
         },
         id: false,
@@ -69,8 +76,8 @@ const thoughtSchema = new Schema({
 // Create a virtual called reactionCount that retrieves the length of the thought's reactions array field on query.
 thoughtSchema
     .virtual('reactionCount')
-// getter function to get the length of the thoughts reactions array field on query.
-    .get(function (){
+    // getter function to get the length of the thoughts reactions array field on query.
+    .get(function () {
         return `${this.reactions.length}`
     });
 
