@@ -2,13 +2,13 @@ const { User, Thought } = require('../models')
 
 module.exports = {
     // GET all users
-    getUser(req, res) {
+    async getUser(req, res) {
         User.find()
             .then((user) => res.status(200).json(user))
             .catch((err) => res.status(500).json(err));
     },
     // GET a user by id
-    getSingleUser(req, res) {
+    async getSingleUser(req, res) {
         User.findOne({ _id: req.params.userId })
             .populate('thoughts')
             .populate('friends')
@@ -21,7 +21,7 @@ module.exports = {
             .catch((err) => res.status(500).json(err));
     },
     // Create a user
-    createUser(req,res) {
+    async createUser(req,res) {
         User.create(req.body)
         .then((user) => res.json(user))
         .catch((err) => {
@@ -30,7 +30,7 @@ module.exports = {
         })
     },
     // UPDATE a user
-    updateUser(req,res) {
+    async updateUser(req,res) {
         User.findOneAndUpdate(
             {_id: req.params.userId},
             {$set: req.body},
@@ -44,7 +44,7 @@ module.exports = {
         .catch((err) => res.status(500).json(err));
     },
     // DELETE a user
-    deleteUser(req,res) {
+    async deleteUser(req,res) {
         User.findOneAndDelete({_id: req.params.userId})
         .then((user) =>
         !user
@@ -56,7 +56,7 @@ module.exports = {
         .catch((err) => res.status(500).json(err))
     },
     // add a freiend to a users friend list
-    addFriend(req,res){
+    async addFriend(req,res){
         User.findOneAndUpdate(
             {id: req.params.userId},
             {$addtoSet: { friends: req.params.friendId}},
@@ -70,7 +70,7 @@ module.exports = {
         .catch((err) => res.status(500).json(err))
     },
     // delete friend
-    deleteFriend(req, res) {
+    async deleteFriend(req, res) {
         User.findOneAndUpdate(
             { id: req.params.userId },
             { $pull: { friends: req.params.friendId } },
