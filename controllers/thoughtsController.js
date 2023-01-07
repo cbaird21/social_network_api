@@ -3,13 +3,13 @@ const { User, Thought } = require('../models')
 
 module.exports = {
     // GET all users
-    getThought(req, res) {
+    async getThought(req, res) {
         Thought.find()
             .then((thought) => res.status(200).json(thought))
             .catch((err) => res.status(500).json(err));
     },
     // GET a thought by id
-    getSingleThought(req, res) {
+    async getSingleThought(req, res) {
         Thought.findOne({ _id: req.params.thoughtId })
             .select('-__v')
             .then((thought) =>
@@ -20,7 +20,7 @@ module.exports = {
             .catch((err) => res.status(500).json(err));
     },
     // Create a thought
-    createThought(req, res) {
+    async createThought(req, res) {
         Thought.create(req.body)
             .then(({ _id }) => {
                 return User.findOneAndUpdate(
@@ -39,7 +39,7 @@ module.exports = {
 
     },
     // UPDATE a thought
-    updateThought(req, res) {
+    async updateThought(req, res) {
         Thought.findOneAndUpdate(
             { _id: req.params.thoughtId },
             { $set: req.body },
@@ -53,7 +53,7 @@ module.exports = {
             .catch((err) => res.status(500).json(err));
     },
     // DELETE a thought
-    deleteThought(req, res) {
+    async deleteThought(req, res) {
         Thought.findOneAndDelete({ _id: req.params.thoughtId })
             .then((thought) =>
                 !thought
@@ -68,7 +68,7 @@ module.exports = {
             .catch((err) => res.status(500).json(err))
     },
     // createReaction
-    createReaction(req, res) {
+    async createReaction(req, res) {
         Thought.findOneAndUpdate(
             { id: req.params.thoughtId },
             { $addtoSet: { reactions: req.body } },
@@ -82,7 +82,7 @@ module.exports = {
             .catch((err) => res.status(500).json(err))
     },
     // delete reaction
-    deleteReaction(req, res) {
+    async deleteReaction(req, res) {
         Thought.findOneAndUpdate(
             { id: req.params.thoughtId },
             { $pull: { reactions: req.params.reactionId } },
