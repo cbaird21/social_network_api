@@ -22,9 +22,9 @@ router.route('/:thoughtId')
     .put(updateThought)
     .delete(deleteThought)
 
-// localhost:3001/api/thoughts/:thoughtId/reactions/:reactionId
+// localhost:3001/api/thoughts/:thoughtId/reactions/
 // POST and DELETE BY ID
-router.route('/:thoughtId/reactions/:reactionsId')
+router.route('/:thoughtId/reactions/')
     .post(createReaction)
     .delete(deleteReaction);
 
