@@ -1,14 +1,14 @@
-const { Schema, Types, model } = require('mongoose');
+const { mongoose} = require('mongoose');
 const moment = require('moment');
 
 // reactions(these are like replies)
 // array of nested documents created with the reactionSchema
-const reactionSchema = new Schema(
+const reactionSchema = new mongoose.Schema(
     {
         // reactionId , mongoose ObjectId data type, default value is set to new ObjectId
         reactionId: {
-            type: Schema.Types.ObjectId,
-            default: () => new Types.ObjectId(),
+            type: mongoose.Schema.Types.ObjectId,
+            default: () => new mongoose.Types.ObjectId(),
         },
         //reactionBody, STRING REQUIRED MAX=280
         reactionBody: {
@@ -39,7 +39,7 @@ const reactionSchema = new Schema(
 )
 
 
-const thoughtSchema = new Schema({
+const thoughtSchema = new mongoose.Schema({
 
     // thought Text must have
     // string, required, must be between 1-280 characters
@@ -82,7 +82,7 @@ thoughtSchema
     });
 
 // initalize our Thoughts model
-const Thoughts = model('thoughts', thoughtSchema);
+const Thoughts = mongoose.model('thoughts', thoughtSchema);
 
 module.exports = Thoughts;
 
