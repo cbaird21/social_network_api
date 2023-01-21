@@ -2,7 +2,7 @@
 
 ## Technologies
 
-Express.js is used for routing, MongoDB and the mongoose ODM.
+Express.js is used for routing, MongoDB, mongoose ODM an NoSql.  
 
 ## Table of Contents
 
