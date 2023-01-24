@@ -2,18 +2,23 @@ const { User, Thought } = require('../models')
 
 module.exports = {
     // GET all users
-    async getUser(req, res) {
-        try {
-            const users = await User.find({})
-                .populate('friends')
-                .populate('thoughts');
-
-            res.status(200).json(users)
-        }
-        catch (error) {
-            res.status(500).json(err)
-        }
+    getUsers(req, res) {
+        User.find()
+            .then((users) => res.json(users))
+            .catch((err) => res.status(500).json(err));
     },
+    // async getUser(req, res) {
+    //     try {
+    //         const users = await User.find({})
+    //             .populate('friends')
+    //             .populate('thoughts');
+
+    //         res.status(200).json(users)
+    //     }
+    //     catch (error) {
+    //         res.status(500).json(error)
+    //     }
+    // },
     // GET a user by id
     async getSingleUser(req, res) {
         await User.findOne({ _id: req.params.userId })

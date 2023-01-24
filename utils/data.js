@@ -50,7 +50,7 @@ const users = [];
 const getRandomArrItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
 // Get a random name
-const getRandomUserName = () => `${getRandomArrItem(names)} ${getRandomArrItem(last)}`
+const getRandomUserName = () => `${getRandomArrItem(names)}${getRandomArrItem(last)}`
 
 // get a random reaction now
 const getRandomReaction = () => `${getRandomArrItem(reactionBody)}`
