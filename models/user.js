@@ -30,7 +30,7 @@ const userSchema = new mongoose.Schema({
     // FRIENDS MUST BE
     // array of `_id` values referencing the user model(self-reference)
     friends: [{
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: "User",
     }]
 },
