@@ -1,6 +1,6 @@
-const { mongoose } = require('mongoose');
+const { Schema, model } = require('mongoose');
 
-const userSchema = new mongoose.Schema({
+const userSchema = new Schema({
     // USERNAME MUST BE
     // STRING,UNIQUE,REQUIRED,TRIMMED
     username: {
@@ -24,13 +24,13 @@ const userSchema = new mongoose.Schema({
     // THOUGHTS MUST BE
     // array of `_id` values referencing the thought model
     thoughts: [{
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: "Thought",
     }],
     // FRIENDS MUST BE
     // array of `_id` values referencing the user model(self-reference)
     friends: [{
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: "User",
     }]
 },
@@ -42,10 +42,10 @@ const userSchema = new mongoose.Schema({
     })
 // Create a virtual called friendCount that retrieves the length of the user's friends array field on query.
 userSchema.virtual("friendcount").get(function () {
-    return this.friends.length
+    return `${this.friends.length}`
 });
 
 // create the user model
-const User = mongoose.model('User', userSchema);
+const User = model('User', userSchema);
 
 module.exports = User;
