@@ -69,7 +69,7 @@ module.exports = {
     },
     // createReaction
     async createReaction(req, res) {
-        await Thoughts.updateOne(
+        await Thoughts.findOneAndUpdate(
             { id: req.params.thoughtId },
             { $push: { reactions: req.body } },
             { runValidators: true, new: true }
@@ -86,7 +86,6 @@ module.exports = {
         await Thoughts.updateOne(
             { id: req.params.thoughtId },
             { $pull: { reactions: req.params.reactionId } },
-            { new: true }
         )
             .then((thought) =>
                 !thought
