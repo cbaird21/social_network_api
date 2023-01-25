@@ -2,7 +2,7 @@
 
 ## Technologies
 
-Express.js is used for routing, MongoDB, mongoose ODM an NoSql.  
+Express.js is used for routing, MongoDB, mongoose ODM an NoSql.
 
 ## Table of Contents
 
@@ -44,7 +44,7 @@ THEN I am able to successfully create and delete reactions to thoughts and add a
 
 ## Walkthrough
 
-// under construction //
+https://drive.google.com/file/d/188nViwpIxQid24jSMp_4UkVbsbmnGOlj/view
 
 ## License
 

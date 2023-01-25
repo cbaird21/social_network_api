@@ -82,10 +82,10 @@ module.exports = {
     },
     // add a freiend to a users friend list
     async addFriend(req, res) {
-        await User.updateOne(
-            { id: req.params.userId },
+        await User.findOneAndUpdate(
+            { _id: req.params.userId },
             { $push: { friends: req.params.friendId } },
-            { runValidators: true, new: true }
+
 
         )
             .then((user) =>
@@ -97,7 +97,7 @@ module.exports = {
     },
     // delete friend
     async deleteFriend(req, res) {
-        await User.findOneAndUpdate(
+        await User.updateOne(
             { id: req.params.userId },
             { $pull: { friends: req.params.friendId } },
             { new: true }

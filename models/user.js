@@ -25,7 +25,7 @@ const userSchema = new Schema({
     // array of `_id` values referencing the thought model
     thoughts: [{
         type: Schema.Types.ObjectId,
-        ref: "Thought",
+        ref: "Thoughts",
     }],
     // FRIENDS MUST BE
     // array of `_id` values referencing the user model(self-reference)
@@ -38,7 +38,6 @@ const userSchema = new Schema({
         toJSON: {
             virtuals: true,
         },
-        id: false,
     })
 // Create a virtual called friendCount that retrieves the length of the user's friends array field on query.
 userSchema.virtual("friendcount").get(function () {
